@@ -17,10 +17,6 @@ const postSchema = new Schema(
     body: {
       type: String,
     },
-    createdAt: {
-      type: Date,
-      default: Date.now(),
-    },
   },
   { timestamps: true }
 );

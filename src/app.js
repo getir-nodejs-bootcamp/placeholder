@@ -2,7 +2,8 @@ require("dotenv").config();
 
 const express = require("express");
 const mongoose = require("mongoose");
-const userRoute = require("./routes/userRoutes");
+const userRouter = require("./routes/userRoutes");
+const postRouter = require("./routes/postRoutes");
 
 const port = process.env.PORT || 4000;
 const mongoURI = process.env.MONGODB_URI;
@@ -10,7 +11,8 @@ const mongoURI = process.env.MONGODB_URI;
 const app = express();
 
 app.use(express.json());
-app.use("/users", userRoute);
+app.use("/users", userRouter);
+app.use("/posts", postRouter);
 
 mongoose.connect(mongoURI, {
   useNewUrlParser: true,
