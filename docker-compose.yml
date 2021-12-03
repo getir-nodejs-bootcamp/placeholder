@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  mongo:
+    image: mongo:5
+    container_name: mongo_db
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+
+  api:
+    container_name: node_product
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+    - "4000:4000"
+    environment:
+      MONGODB_URI: mongodb://admin:password@mongo:27017
+    depends_on:
+      - mongo
